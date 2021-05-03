@@ -1,0 +1,71 @@
+<ion-content [ngStyle]="{'background-image': 'url(' + image + ')'}">
+    <div class="dark-layer">
+        <div class="content-section">
+            <div class="ion-margin-top">
+                <ion-label class="title">
+                    <p>Login <span class="ion-float-right">Laundering</span></p>
+                    <div class="hr"></div>
+                </ion-label>
+            </div>
+            <div class="padding-top">
+                <form [formGroup]="RegisterForm" (ngSubmit)="signUp()">
+                <div class="input-div">
+                    <ion-label>Nom</ion-label>
+                    <ion-input formControlName="nom" placeholder="Enter your email address"  #userName></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-label>Prenom</ion-label>
+                    <ion-input formControlName="prenom" placeholder="Enter your email address"  #userName></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-label>Email Address</ion-label>
+                    <ion-input formControlName="email" placeholder="Enter your email address"  #userName></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-label>Password</ion-label>
+                    <ion-input formControlName="password" type="password" #userPassword placeholder="Enter your password"></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-label>Confirm Password</ion-label>
+                    <ion-input formControlName="confirm_password" type="password" #userPassword placeholder="Enter your password"></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-label>Telephone</ion-label>
+                    <ion-input formControlName="telephone" placeholder="Enter your full name"></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-label>adresse</ion-label>
+                    <ion-input formControlName="adresse" placeholder="Enter your full name"></ion-input>
+                </div>
+                <div class="input-div">
+                    <ion-list>
+                        <ion-radio-group>
+                          <ion-list-header>
+                            Type
+                          </ion-list-header>
+                      
+                          <ion-item>
+                            <ion-label>Client</ion-label>
+                            <ion-radio formControlName="type" value="client"></ion-radio>
+                          </ion-item>
+                      
+                          <ion-item>
+                            <ion-label>Vendeur</ion-label>
+                            <ion-radio formControlName="type" value="vendeur"></ion-radio>
+                          </ion-item>
+                        </ion-radio-group>
+                      </ion-list>
+                </div>
+                <div>
+                    <ion-button type="submit" mode="md" color="var(--blue-color)" expand="full">
+                        Login
+                    </ion-button>
+                </div>
+                </form>
+                <div class="footer ion-text-center">
+                    <p>you have an account ? <span (click)="login()">Login</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>categorie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<h1>categories</h1>
+{{id}}
+<div class="slider_div" *ngFor="let s of produits" (click)="produitDetail(s)">
+  <div class="ion-text-center img">
+      <img src="{{s.image}}" />
+  </div>
+  <div class="ion-padding-start ion-margin-top ion-padding-end ion-text-center padding">
+      {{s.nom}}
+  </div>
+</div>
+</ion-content>

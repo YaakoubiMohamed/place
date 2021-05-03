@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button (click)="back()" mode="md" defaultHref="tabs/home" [text]="" icon="arrow-back-outline">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title mode="md">{{data.nom}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding-start ion-padding-end">
+    <div class="men ion-margin-top">
+        <ion-row class="ion-text-center">
+            <ion-col  size="6">
+                <div class="div">
+                    <div class="itemm">
+                        <img src="{{data.image}}" />
+                    </div>
+                    <h1>{{data.nom}}</h1>
+                    <p>{{data.prix}}</p>
+                    <ion-item class="ion-no-padding" lines="none">
+                        <ion-button mode="ios" fill="clear" (click)="minusFromCart(item)">-</ion-button>
+                        <ion-text>{{data.quantite}}</ion-text>
+                        <ion-button mode="ios" (click)="addToCart(item)" fill="clear">+</ion-button>
+                    </ion-item>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-button *ngIf="cartData.length >= 1" mode="md" expand="full" [routerLink]="['/tabs/home/cart']" color="var(--blur-color)">
+        Go To Cart
+        <ion-icon src="../../../assets/item/login.svg"></ion-icon>
+    </ion-button>
+</ion-footer>
