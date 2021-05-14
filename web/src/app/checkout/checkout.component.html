@@ -3,7 +3,7 @@
       <!-- Breadcrumb Start-->
       <ul class="breadcrumb">
         <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-        <li><a href="cart.html">Shopping Cart</a></li>
+        <li><a href="/panier">Shopping Cart</a></li>
         <li><a href="checkout.html">Checkout</a></li>
       </ul>
       <!-- Breadcrumb End-->
@@ -595,7 +595,7 @@
                           <span>I have read and agree to the <a class="agree" href="#"><b>Terms &amp; Conditions</b></a></span> </label>
                         <div class="buttons">
                           <div class="pull-right">
-                            <input type="button" class="btn btn-primary" id="button-confirm" value="Confirm Order">
+                            <input type="button" (click)="valider()" class="btn btn-primary" id="button-confirm" value="Confirm Order">
                           </div>
                         </div>
                       </div>

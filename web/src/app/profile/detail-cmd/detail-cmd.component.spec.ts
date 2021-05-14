@@ -1,22 +1,20 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
+import { DetailCmdComponent } from './detail-cmd.component';
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('DetailCmdComponent', () => {
+  let component: DetailCmdComponent;
+  let fixture: ComponentFixture<DetailCmdComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      declarations: [ DetailCmdComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(DetailCmdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

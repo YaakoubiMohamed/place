@@ -22,6 +22,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import{AngularFireDatabaseModule} from '@angular/fire/database';
 import { RegisterComponent } from './register/register.component';
+import { DetailCmdComponent } from './profile/detail-cmd/detail-cmd.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule,  } from "@angular/material/tabs";
+import { MatButtonModule } from "@angular/material/button";
+import {  MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,8 @@ import { RegisterComponent } from './register/register.component';
     CheckoutComponent,
     ContactComponent,
     EditProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    DetailCmdComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +56,13 @@ import { RegisterComponent } from './register/register.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

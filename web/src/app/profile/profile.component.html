@@ -89,19 +89,7 @@ a:focus{
     text-transform: capitalize;
     margin: 0 0 4px;
 }
-@media only screen and (max-width: 479px){
-    .vertical-tab .nav-tabs{
-        width: 100%;
-        padding: 0;
-        display: block;
-    }
-    .vertical-tab .nav-tabs li a{ margin-right: 0; }
-    .vertical-tab .tab-content{
-        font-size: 14px;
-        display: block;
-    }
-    .vertical-tab .tab-content h3{ font-size: 18px; }
-}
+
     </style>
 <div id="container">
     <div class="container">
@@ -119,7 +107,7 @@ a:focus{
           <div class="table-responsive">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="vertical-tab" role="tabpanel">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
@@ -131,11 +119,36 @@ a:focus{
                             <div class="tab-content tabs">
                                 <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                                     <h3>Profile</h3>
+                                    Nom: {{user.nom}} <br>
+                                    Prenom: {{user.prenom}} <br>
+                                    Email: {{user.email}} <br>
+                                    Telephone: {{user.telephone}} <br>
                                     
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="Section2">
                                     <h3>Commandes</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius, mi eros viverra massa.</p>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Produit</th>
+                                                <th>Reference</th>
+                                                <th>Etat</th>
+                                                <th>Date</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr *ngFor="let commande of commandes">
+                                                <td>{{commande.nom}}</td>
+                                                <td>{{commande.uid}}</td>
+                                                <td>{{commande.etat}}</td>
+                                                <td>{{commande.date | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                <td><a (click)="detail(commande)">Detail</a></td>
+                                            </tr>
+                                        
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="Section3">
                                     <h3>Avis</h3>

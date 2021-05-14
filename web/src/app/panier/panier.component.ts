@@ -12,7 +12,8 @@ export class PanierComponent implements OnInit {
   constructor(private panierservice: PanierService) { }
 
   ngOnInit(): void {
-    this.items = this.panierservice.getItems();
+    this.items = JSON.parse(localStorage.getItem('panier'));
+    //this.panierservice.getItems();
     console.log(this.items);
   }
 

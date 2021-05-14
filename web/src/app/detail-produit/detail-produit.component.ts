@@ -14,6 +14,7 @@ export class DetailProduitComponent implements OnInit {
   id: any;
   produits: Produit[] = [];
   produit: Produit;
+  items = [];
 
   constructor(private produitservice: ProduitService,
     private panierservice: PanierService,
@@ -24,6 +25,7 @@ export class DetailProduitComponent implements OnInit {
     this.id = this.actroute.snapshot.params.id;
     //this.id = localStorage.getItem('id');
     console.log(this.id);
+    //this.items = JSON.parse(localStorage.getItem('panier'));
     //alert(this.id);
 
     this.produitservice.getProduits().subscribe(admin => {
@@ -42,7 +44,9 @@ export class DetailProduitComponent implements OnInit {
 
   cart(produit){
     console.log(produit);
-    this.panierservice.AddToCart(produit);
+    this.items.push(produit);
+    localStorage.setItem('panier', JSON.stringify(this.items));
+    //this.panierservice.AddToCart(produit);
     this.router.navigate(['/panier']);
   }
 }
