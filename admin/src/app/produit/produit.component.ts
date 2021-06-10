@@ -6,6 +6,8 @@ import {DataTableDirective, DataTablesModule} from 'angular-datatables';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Produit } from '../shared/classes/produit';
+import { CategorieService } from '../shared/services/categorie.service';
+import { Categorie } from '../shared/classes/categorie';
 
 @Component({
   selector: 'app-produit',
@@ -25,8 +27,10 @@ export class ProduitComponent implements OnInit {
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject<any>();
   submitted: boolean;
+  categories: Categorie[];
 
   constructor(private produitservice: ProduitService,
+    private categorieservice: CategorieService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -34,7 +38,7 @@ export class ProduitComponent implements OnInit {
   
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 10
     };
     this.produitservice.getProduits().subscribe(admin => {
       this.produits = admin.map(item => {
@@ -53,6 +57,14 @@ export class ProduitComponent implements OnInit {
       }
        
       console.log(this.produits);           
+    });
+
+    this.categorieservice.getCategories().subscribe(admin => {
+      this.categories = admin.map(item => {
+        let uid = item.payload.doc.id;
+        let data = item.payload.doc.data();
+        return { uid, ...(data as {}) } as Categorie;
+      });
     });
     
   } 

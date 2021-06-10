@@ -1,5 +1,5 @@
 export class Categorie {
-    id:string;
+    uid:string;
     nom:string;
     description:string;
 }

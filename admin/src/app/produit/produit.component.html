@@ -10,6 +10,7 @@
                       <tr>
                           <th>#</th>
                         <th>Nom</th>
+                        <th>Marque</th>                        
                         <th>Prix</th>
                         <th>Quantite</th>
                         <th>description</th>
@@ -20,6 +21,7 @@
                       <tr *ngFor="let produit of produits">
                           <td><img src="{{ produit.image }}" class="profile"></td>
                         <td>{{ produit.nom }}</td>
+                        <td>{{ produit.marque }}</td>
                         <td>{{ produit.prix }}</td>
                         <td>{{ produit.quantite }}</td>
                         <td>{{ produit.description }}</td>

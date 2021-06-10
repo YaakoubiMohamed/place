@@ -15,6 +15,8 @@ import { VendeurComponent } from './vendeur/vendeur.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { AddProduitComponent } from './produit/add-produit/add-produit.component';
 import { EditProduitComponent } from './produit/edit-produit/edit-produit.component';
+import { AddOffreComponent } from './offres/add-offre/add-offre.component';
+import { EditOffreComponent } from './offres/edit-offre/edit-offre.component';
 
 const routes: Routes = [
  {path:'',redirectTo: '/login', pathMatch:'full'},
@@ -31,6 +33,8 @@ const routes: Routes = [
      {path:'vendeurs', component: VendeurComponent},
      {path:'categories', component: CategorieComponent},
      {path:'offres', component: OffresComponent},
+     {path:'add-offre', component: AddOffreComponent},
+     {path:'edit-offre', component: EditOffreComponent},
      {path:'clients', component: ClientComponent},
      {path:'commandes', component: CommandeComponent},
      {path:'contact', component: ContactComponent},

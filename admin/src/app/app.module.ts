@@ -29,6 +29,8 @@ import { DataTablesModule } from "angular-datatables";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProduitComponent } from './produit/add-produit/add-produit.component';
 import { EditProduitComponent } from './produit/edit-produit/edit-produit.component';
+import { AddOffreComponent } from './offres/add-offre/add-offre.component';
+import { EditOffreComponent } from './offres/edit-offre/edit-offre.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { EditProduitComponent } from './produit/edit-produit/edit-produit.compon
     LoginComponent,
     CategorieComponent,
     AddProduitComponent,
-    EditProduitComponent
+    EditProduitComponent,
+    AddOffreComponent,
+    EditOffreComponent
   ],
   imports: [
     BrowserModule,

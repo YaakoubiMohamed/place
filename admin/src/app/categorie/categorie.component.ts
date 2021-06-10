@@ -36,7 +36,7 @@ export class CategorieComponent implements OnInit {
   
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 10
     };
     this.categorieservice.getCategories().subscribe(admin => {
       this.categories = admin.map(item => {
@@ -53,9 +53,7 @@ export class CategorieComponent implements OnInit {
         this.isDtInitialized = true
         this.dtTrigger.next();
       }
-       this.categories = this.categories.filter(s => {
-        return s.type == 'categorie';
-      })
+       
       console.log(this.categories);           
     });
     

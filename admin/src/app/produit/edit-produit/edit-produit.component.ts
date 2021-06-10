@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Categorie } from 'src/app/shared/classes/categorie';
+import { CategorieService } from 'src/app/shared/services/categorie.service';
 declare var angular: any;
 
 @Component({
@@ -18,23 +20,36 @@ export class EditProduitComponent implements OnInit {
   arr: any;
   photo: any;
   @ViewChild("img") img: ElementRef;
+  categories: Categorie[];
+  product: any;
 
 
   constructor(
     public afs: AngularFirestore,
+    private categorieservice: CategorieService,
     private fb: FormBuilder,
     private router: Router,
     private actRoute: ActivatedRoute ) { }
   ngOnInit() {
+    this.product = JSON.parse(localStorage.getItem('product'));
     this.editForm = this.fb.group({
-      nom: ['', [Validators.required, Validators.minLength(4)]],
-      marque: ['', [Validators.required, Validators.minLength(4)]],
-      description: ['', [Validators.required, Validators.minLength(2)]],
-      image: [''],
-      prix: ['', [Validators.required, Validators.minLength(1)]],
-      quantite: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      nom: [this.product.nom, [Validators.required, Validators.minLength(4)]],
+      marque: [this.product.marque, [Validators.required, Validators.minLength(4)]],
+      description: [this.product.description, [Validators.required, Validators.minLength(2)]],
+      image: [this.product.image],
+      categorie: [this.product.categorie],
+      prix: [this.product.prix, [Validators.required, Validators.minLength(1)]],
+      quantite: [this.product.quantite, [Validators.required, Validators.pattern('^[0-9]+$')]],
     });
     this.arr = this.afs.collection('/produits');
+
+    this.categorieservice.getCategories().subscribe(admin => {
+      this.categories = admin.map(item => {
+        let uid = item.payload.doc.id;
+        let data = item.payload.doc.data();
+        return { uid, ...(data as {}) } as Categorie;
+      });
+    });
    
   }
   
@@ -53,7 +68,8 @@ export class EditProduitComponent implements OnInit {
    let photo = this.img.nativeElement.value;
    this.editForm.get("image").setValue(photo);
 
-        this.arr.add(this.editForm.value);
+        this.arr.doc(this.product.uid).set(this.editForm.value)
+        //.add(this.editForm.value);
         console.log(this.editForm.value);
         this.router.navigate(['/produits']);
 

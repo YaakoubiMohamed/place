@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { CategorieService } from 'src/app/shared/services/categorie.service';
+import { Categorie } from 'src/app/shared/classes/categorie';
 declare var angular: any;
 
 @Component({
@@ -18,10 +20,12 @@ export class AddProduitComponent implements OnInit {
   arr: any;
   photo: any;
   @ViewChild("img") img: ElementRef;
+  categories: Categorie[];
 
 
   constructor(
     public afs: AngularFirestore,
+    private categorieservice: CategorieService,
     private fb: FormBuilder,
     private router: Router,
     private actRoute: ActivatedRoute ) { }
@@ -31,11 +35,18 @@ export class AddProduitComponent implements OnInit {
       marque: ['', [Validators.required, Validators.minLength(4)]],
       description: ['', [Validators.required, Validators.minLength(2)]],
       image: [''],
+      categorie: [''],
       prix: ['', [Validators.required, Validators.minLength(1)]],
       quantite: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     });
     this.arr = this.afs.collection('/produits');
-   
+    this.categorieservice.getCategories().subscribe(admin => {
+      this.categories = admin.map(item => {
+        let uid = item.payload.doc.id;
+        let data = item.payload.doc.data();
+        return { uid, ...(data as {}) } as Categorie;
+      });
+    });
   }
   
   add() {

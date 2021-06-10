@@ -10,7 +10,13 @@
                     </div>
                 </div>
                 <div class="widget-content widget-content-area">
-                    <form [formGroup]="editForm" (ngSubmit)="add()" novalidate>        
+                    <form [formGroup]="editForm" (ngSubmit)="add()" novalidate>  
+                        <div class="col-md-12 mb-3">
+                                <label>Image</label>
+                                <input class="form-control" (change)="upload(f,img)" type="file" #f />
+                                <input type="hidden" formControlName="image" #img>
+                                <!-- Showing errors using getter method -->
+                        </div>      
                         <div class="col-md-12 mb-3">
                             <label>nom</label>
                             <input type="text" placeholder="Enter name of the Product" formControlName="nom" class="form-control" required>
@@ -21,6 +27,13 @@
                             <p *ngIf="editForm.get('nom').errors?.minlength" class="error">
                             <sup>*</sup>Le nom ne doit pas être inférieur à 4 lettress
                             </p>  
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label>categorie</label>
+                            <select formControlName="categorie" id="">
+                                <option value="{{categorie.uid}}" *ngFor="let categorie of categories">{{categorie.nom}}</option>
+                            </select>
+                            <!-- Showing errors using getter method -->
                         </div>
                         <div class="col-md-12 mb-3">
                             <label>marque</label>
@@ -66,14 +79,8 @@
                                 <sup>*</sup>Le nom ne doit pas être inférieur à 4 lettress
                                 </p>   
                         </div>
-                        <div class="col-md-12 mb-3">
-                                <label>Image</label>
-                                <input class="form-control" (change)="upload(f,img)" type="file" #f />
-                                <input type="text" formControlName="image" #img>
-                                <!-- Showing errors using getter method -->
-                        </div>
-                        <button type="submit" class="btn btn-success btn-block" [disabled]="!editForm.valid">
-                                Modifier
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="!editForm.valid">
+                                Ajouter
                         </button>
                     </form>
                 </div>
